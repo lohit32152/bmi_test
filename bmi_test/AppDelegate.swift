@@ -1,4 +1,6 @@
-//
+//FILE NAME : bmi_test
+//AUTHOR NAME: LOHIT MAHAY
+//STUDENT ID: 301093942
 //  AppDelegate.swift
 //  bmi_test
 //
@@ -7,6 +9,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
