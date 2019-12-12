@@ -165,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="95.758928571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="Y6T-FX-dZa">
             <objects>
-                <viewController id="j1k-8D-Vej" sceneMemberID="viewController">
+                <viewController id="j1k-8D-Vej" customClass="TableViewController" customModule="bmi_test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yFb-R4-jOM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

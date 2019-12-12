@@ -1,4 +1,6 @@
-//
+//FILE NAME : bmi_test
+//AUTHOR NAME: LOHIT MAHAY
+//STUDENT ID: 301093942
 //  ViewController.swift
 //  bmi_test
 //
