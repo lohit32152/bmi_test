@@ -9,17 +9,33 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
-private var heightnew: Double = 0.0
-private var weightnew: Double = 0.0
-private var bmiresult: Double = 0.0
-private var statusnew = ""
+
+
 class ViewController: UIViewController {
+    
+    var dict = [String:AnyObject]()
+    var dbase:Firestore?
+    
+    private var heightnew: Double = 0.0
+    private var weightnew: Double = 0.0
+    private var bmiresult: Double = 0.0
+    private var statusnew = ""
+
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var age: UITextField!
     @IBOutlet weak var gender: UITextField!
     @IBOutlet weak var weight: UITextField!
     @IBOutlet weak var height: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dbase = Firestore.firestore()
+        // Do any additional setup after loading the view.
+    }
     
    
     
@@ -27,9 +43,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var status: UILabel!
+    
+ 
     @IBAction func done(_ sender: UIButton) {
         
-        heightnew = Double(height.text!) as! Double
+      
+        
+    heightnew = Double(height.text!) as! Double
     weightnew = Double(weight.text!) as! Double
         
         bmiresult = (weightnew*703)/(heightnew*heightnew)
@@ -71,13 +91,31 @@ class ViewController: UIViewController {
         result.text = String(bmiresult)
      
         status.text = String(statusnew)
+        
+        let Id = dbase?.collection("bmi").document().documentID
+        
+        let parameters = ["name":name.text!,"age":age.text!,"gender":gender.text!,"weight":weight.text!,"height":height.text!,"date": Date(),"bmi": bmiresult,"Id":Id!] as [String : Any]
+        
+        dbase?.collection("bmi").document(Id!).setData(parameters as [String : Any]){
+            err in
+            if let error = err{
+                print(error.localizedDescription)
+                
+            }else{
+                let alert = UIAlertController(title: "Message", message: "BMI added", preferredStyle: .alert)
+                let okay = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    //       self.navigationController?.popViewController(animated: true)
+                })
+                alert.addAction(okay)
+                self.present(alert, animated: true, completion: nil)
+                
+            }
+            
+        }
+        
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
 }
+
+
 
